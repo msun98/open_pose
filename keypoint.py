@@ -112,7 +112,6 @@ if __name__ == '__main__':
     pos =  get_point_from_part(image, part)
     print(part)
 
-        #print(point.index[0][4])
         #print('No:%d Name[%s] X:%d Y:%d Score:%f'%( part.part_idx, part.get_part_name(),  pos[0] , pos[1] , part.score))
         #print('No:%d Name[%s] X:%d Y:%d Score:%f'%( part.part_idx, part.get_part_name(),  pos[0] , pos[1] , part.score))
     cv2.putText(image,str(part.part_idx),  (pos[0] + 10, pos[1]), font, 0.5, (0,255,0), 2)

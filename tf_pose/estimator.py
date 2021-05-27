@@ -85,10 +85,8 @@ class Human:
         return max([x.score for _, x in self.body_parts.items()])
 
     def get_face_box(self, img_w, img_h, mode=0):
-
         """
         Get Face box compared to img size (w, h)
-
         :param img_w:
         :param img_h:
         :param mode:
@@ -111,7 +109,6 @@ class Human:
 
         size = 0
         is_neck, part_neck = _include_part(parts, _NECK)
-
         if is_neck:
             size = max(size, img_h * (part_neck.y - part_nose.y) * 0.8)
 
@@ -166,7 +163,6 @@ class Human:
                     "y": _round(y),
                     "w": _round(x2 - x),
                     "h": _round(y2 - y)}
-
 
     def get_upper_body_box(self, img_w, img_h):
         """
@@ -584,5 +580,4 @@ if __name__ == '__main__':
     dt = time.time() - t;
     t = time.time()
     logger.info('elapsed #humans=%d time=%.8f' % (len(humans), dt))
-
-
+    

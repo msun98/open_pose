@@ -160,6 +160,6 @@ if __name__ == '__main__':
         if k == 27:
             break
         logger.debug('finished+')
-
+    #delete all windows
     cv2.destroyAllWindows()
 
