@@ -420,7 +420,9 @@ class TfPoseEstimator:
                 body_part = human.body_parts[i]
                 center = (int(body_part.x * image_w + 0.5), int(body_part.y * image_h + 0.5))
                 centers[i] = center
+                #print('% s = ' %(i),centers[i])
                 cv2.circle(npimg, center, 3, common.CocoColors[i], thickness=3, lineType=8, shift=0)
+
 
             # draw line
             for pair_order, pair in enumerate(common.CocoPairsRender):
@@ -430,7 +432,7 @@ class TfPoseEstimator:
                 # npimg = cv2.line(npimg, centers[pair[0]], centers[pair[1]], common.CocoColors[pair_order], 3)
                 cv2.line(npimg, centers[pair[0]], centers[pair[1]], common.CocoColors[pair_order], 3)
 
-        return npimg
+        return npimg, centers[1]
 
     def _get_scaled_img(self, npimg, scale):
         get_base_scale = lambda s, w, h: max(self.target_size[0] / float(h), self.target_size[1] / float(w)) * s

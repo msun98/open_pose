@@ -26,10 +26,11 @@ def human_cnt(humans):
     return len(humans)
 
 '''
+humans : 사람의 명수
 hnum: 0 based human index
 pos : keypoint
 '''
-def get_keypoint(humans, hnum, pos):
+def get_keypoint(humans, hnum, pos):   
     #check invalid human index
     if human_cnt(humans) <= hnum:
         return None
@@ -107,19 +108,23 @@ if __name__ == '__main__':
     #     part = get_keypoint(humans, 0, i)
     #     if part is None:
     #         continue
-        # pos =  get_point_from_part(image, part)
-    part = get_keypoint(humans, 0, 0)
-    pos =  get_point_from_part(image, part)
-    print(part)
+    #     pos =  get_point_from_part(image, part)
+    #     print('No:%d Name[%s] X:%d Y:%d Score:%f'%( part.part_idx, part.get_part_name(), pos[0] , pos[1] , part.score))
 
-        #print('No:%d Name[%s] X:%d Y:%d Score:%f'%( part.part_idx, part.get_part_name(),  pos[0] , pos[1] , part.score))
-        #print('No:%d Name[%s] X:%d Y:%d Score:%f'%( part.part_idx, part.get_part_name(),  pos[0] , pos[1] , part.score))
-    cv2.putText(image,str(part.part_idx),  (pos[0] + 10, pos[1]), font, 0.5, (0,255,0), 2)
+    # neck_part = get_keypoint(humans, 0, 0)
+    # point_of_neck = get_point_from_part(image, neck_part)
+    # print(point_of_neck) # 목의 점.
+
+    #cv2.putText(image,str(part.part_idx),  (pos[0] + 10, pos[1]), font, 0.5, (0,255,0), 2)
 
     image = TfPoseEstimator.draw_humans(image, humans, imgcopy=True)
-    cv2.imshow('tf-pose-estimation result', image)
-    # cv2.waitKey(0)                                          # 아무키나 누르면
-    # cv2.destroyWindow("tf-pose-estimation result") 
+    flip_image = cv2.flip(image[0],1)
+    print(image[1])
+    print(flip_image)
+    cv2.imshow('tf-pose-estimation result', image[0])
+    cv2.waitKey(0)                                          # 아무키나 누르면
+    cv2.destroyWindow("tf-pose-estimation result") 
+
     while True:
         if cv2.waitKey(0) & 0xFF == 27:     # esc로 종료
             break
